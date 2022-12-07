@@ -18,6 +18,8 @@ public class MainMenu {
 
     JButton DeleteAccountButton = new JButton();
 
+    JButton EditAccountButton = new JButton();
+
 
 
 
@@ -34,6 +36,7 @@ public class MainMenu {
               frame.add(CheckDetailButton);
               frame.add(LogoutButton);
               frame.add(DeleteAccountButton);
+              frame.add(EditAccountButton);
               frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
               frame.setSize(1280,720);
               frame.setLayout(null);
@@ -223,6 +226,37 @@ public class MainMenu {
 
                      frame.dispose();
                      new DeleteAccount(temp1, temp2, temp3,dark);
+
+                 }
+             });
+
+             EditAccountButton.setBounds(550,500,200,50);
+             EditAccountButton.setFont(new Font(Font.SERIF,Font.ITALIC,30));
+             EditAccountButton.setText("Edit Account");
+             EditAccountButton.setForeground(new Color(rF,gF,bF));
+             EditAccountButton.setBackground(new Color(rB,gB,bB));
+             EditAccountButton.setBorder(BorderFactory.createLineBorder(new Color(rB,gB,bB)));
+             EditAccountButton.setFocusable(false);
+
+             EditAccountButton.addMouseListener(new MouseAdapter() {  //change cursor on mouse hover
+                 public void mouseEntered(MouseEvent evt) {
+
+                     EditAccountButton.setBackground(new Color(rF,gF,bF));
+                     EditAccountButton.setForeground(new Color(rB,gB,bB));
+                     EditAccountButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                 }
+
+                 public void mouseExited(MouseEvent evt) {
+
+                     EditAccountButton.setBackground(new Color(rB,gB,bB));
+                     EditAccountButton.setForeground(new Color(rF,gF,bF));
+                     EditAccountButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                 }
+
+                 public void mousePressed(MouseEvent e) {
+
+                     frame.dispose();
+                     new EditAccountInfo(temp1, temp2, temp3,dark);
 
                  }
              });
