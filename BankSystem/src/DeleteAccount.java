@@ -206,9 +206,9 @@ public class DeleteAccount {
                 {
 
                     DeleteAccountNo();
-                    Toolkit.getDefaultToolkit().beep();
-                    JOptionPane.showMessageDialog(frame,"Account Deleted","Delete Account",JOptionPane.INFORMATION_MESSAGE);
-                    AccountNoField.setText("");
+//                    Toolkit.getDefaultToolkit().beep();
+//                    JOptionPane.showMessageDialog(frame,"Account Deleted","Delete Account",JOptionPane.INFORMATION_MESSAGE);
+//                    AccountNoField.setText("");
                 }
 
 
@@ -226,6 +226,7 @@ public class DeleteAccount {
         String Temp = "temp.csv";
         BufferedReader reader = null;
         String line = "";
+        int check=1;
 
         try {
 
@@ -246,8 +247,8 @@ public class DeleteAccount {
 
                if(row[0].contains(String.valueOf(AccountNoField.getText())))
                 {
-
                     writer.writeNext(null);
+                    check=0;
 
                 }
                 else
@@ -258,6 +259,19 @@ public class DeleteAccount {
                 }
 
             }
+            if(check == 1)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                JOptionPane.showMessageDialog(frame,"Account Doesn't Exist","Delete Account",JOptionPane.INFORMATION_MESSAGE);
+                AccountNoField.setText("");
+            }
+            else
+            {
+                Toolkit.getDefaultToolkit().beep();
+                JOptionPane.showMessageDialog(frame,"Account Deleted","Delete Account",JOptionPane.INFORMATION_MESSAGE);
+                AccountNoField.setText("");
+            }
+
 
 
             reader.close();

@@ -499,6 +499,7 @@ boolean ex=false;
             ThemeLabel.setFont(new Font(Font.SERIF, Font.ITALIC, 20));
             ThemeLabel.setForeground(new Color(rF, gF, bF));
 
+
             UserIdField.setBounds(580, 200, 200, 50);
             UserIdField.setFont(new Font(Font.SERIF, Font.ITALIC, 30));
             UserIdField.setHorizontalAlignment(JTextField.CENTER);
