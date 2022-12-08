@@ -262,11 +262,17 @@ public class EditAccountInfo {
                     while ((line = reader.readLine()) != null) {
                         String[] row = line.split(",");
                         String id,name,balance;
+
+                        if((row[0].contains(String.valueOf(DisplayAccountNumberTextField.getText()))))
+                        {
+                            row[0]="";
+                            row[1]="";
+                        }
+
                         id = row[0];
                         name = row[1];
 
-
-                        if ((id.contains(String.valueOf(AccountNumberTextField.getText()))))
+                        if ((id.contains(String.valueOf(AccountNumberTextField.getText()))) )
                         {
                             Toolkit.getDefaultToolkit().beep();
                             JOptionPane.showMessageDialog(frame,"Account number Already Exist","Account Already Exits",JOptionPane.INFORMATION_MESSAGE);
@@ -462,7 +468,7 @@ public class EditAccountInfo {
                 if(e.getSource()==DisplayBackButton)
                 {
                     AccountFrame.dispose();
-                    new MainMenu(temp1,temp2,temp3,frame.getContentPane().getBackground());
+                    new MainMenu(temp1,temp2,temp3,AccountFrame.getContentPane().getBackground());
                 }
             }
         });

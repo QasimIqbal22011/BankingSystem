@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
 
@@ -181,9 +182,58 @@ public class CheckAccountDetail {
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_ENTER)
                 {
-                    AccountFrame.dispose();
-                    ThemeCheckAccountDetail(temp1, temp2, temp3,Dark);
+                    String file = "database.csv";
+//                String Temp = "temp.csv";
+                    BufferedReader reader = null;
+                    String line = "";
+                    int check=1;
+
+                    try {
+
+                        File OldFile = new File(file);
+
+                        reader=new BufferedReader(new FileReader(file));
+
+                        while ((line = reader.readLine()) != null)
+                        {
+                            String[] row=line.split(",");
+
+
+                            if(row[0].contains(String.valueOf(EnterAccountTextField.getText())))
+                            {
+
+                                check=0;
+
+                            }
+
+
+
+                        }
+                        if(check == 1)
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            JOptionPane.showMessageDialog(frame,"Account Doesn't Exist","Delete Account",JOptionPane.INFORMATION_MESSAGE);
+                            EnterAccountTextField.setText("");
+                        }
+                        else
+                        {
+                            reader.close();
+                            ThemeCheckAccountDetail(temp1, temp2, temp3,Dark);
+                        }
+
+
+
+
+                    }
+                    catch (Exception j)
+                    {
+                        j.printStackTrace();
+
+                    }
                 }
+
+
+
             }
         });
 
@@ -215,7 +265,7 @@ public class CheckAccountDetail {
                 if(e.getSource()==BackButtonTakeAccount)
                 {
                     AccountFrame.dispose();
-                    new MainMenu(temp1,temp2,temp3,frame.getContentPane().getBackground());
+                    new MainMenu(temp1,temp2,temp3,AccountFrame.getContentPane().getBackground());
                 }
             }
         });
@@ -244,16 +294,67 @@ public class CheckAccountDetail {
             }
 
 
-            public void mouseClicked(MouseEvent j) {
+            public void mouseClicked(MouseEvent e) {
 
-                ThemeCheckAccountDetail(temp1, temp2, temp3,Dark);
+                String file = "database.csv";
+//                String Temp = "temp.csv";
+                BufferedReader reader = null;
+                String line = "";
+                int check=1;
 
+                try {
+
+                    File OldFile = new File(file);
+
+                    reader=new BufferedReader(new FileReader(file));
+
+                    while ((line = reader.readLine()) != null)
+                    {
+                        String[] row=line.split(",");
+
+
+                        if(row[0].contains(String.valueOf(EnterAccountTextField.getText())))
+                        {
+
+                            check=0;
+
+                        }
+
+
+
+                    }
+                    if(check == 1)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        JOptionPane.showMessageDialog(frame,"Account Doesn't Exist","Delete Account",JOptionPane.INFORMATION_MESSAGE);
+                        EnterAccountTextField.setText("");
+                    }
+                    else
+                    {
+                        reader.close();
+                        ThemeCheckAccountDetail(temp1, temp2, temp3,Dark);
+                    }
+
+
+
+
+                }
+                catch (Exception j)
+                {
+                    j.printStackTrace();
+
+                }
             }
+
+
+
+
+
 
 
     });
 
-    }
+}
 
 
     void DisplayAccountDetail(String temp1, String temp2, String temp3,Color Dark) {
